@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <h4>Update Data</h4>
+    </div>
+    <form action = "{% url 'sparepart:sparepart_update' object.id %}" method = "post">
+        {% csrf_token %}
+            {{ form|crispy }}
+        <input type = "submit" value = "Submit" class="btn btn-primary">
+        <a href =  "{% url 'sparepart:home' %}" type = "cancel" class="btn btn-secondary">Cancel</a>
+    </form>
+
+    {% include "includes/footer.html" %}
+    
+</div>
+  {% endblock content %}

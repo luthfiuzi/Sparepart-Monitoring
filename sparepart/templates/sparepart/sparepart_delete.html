@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <form action="{% url 'sparepart:sparepart_delete' object.id %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Apakah anda ingin menghapus "{{ object.nama}}"?</td>
+            </tr>
+        </table>
+        <input type="submit" value="Yes" class="btn btn-primary">
+        <a href =  "{% url 'sparepart:home' %}" type = "cancel" class="btn btn-secondary">No</a>
+    </form>
+    {% include "includes/footer.html" %}
+</div>
+{% endblock content %}

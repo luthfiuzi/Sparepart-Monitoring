@@ -1,0 +1,30 @@
+<a href="{% url 'sparepart:sparepart_create' %}">Tambah Sparepart</a>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nama Part</th>
+            <th>Merk</th>
+            <th>Jumlah</th>
+            <th>No. Rak</th>
+            <th>Keterangan</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for sparepart in spareparts %}
+        <tr>
+            <td>{{ sparepart.id }}</td>
+            <td>{{ sparepart.nama }}</td>
+            <td>{{ sparepart.merk }}</td>
+            <td>{{ sparepart.jumlah }}</td>
+            <td>{{ sparepart.rak }}</td>
+            <td>{{ sparepart.keterangan }}</td>
+            <td>
+                <a href="{% url 'sparepart:sparepart_update' sparepart.id %}">Edit</a>
+                <a href="{% url 'sparepart:sparepart_delete' sparepart.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
