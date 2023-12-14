@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-fluid py-4">
     <div class="row">
-        <h4>Update Data</h4>
+        <h4>Update Data Sparepart</h4>
     </div>
     <form action = "{% url 'sparepart:sparepart_update' object.id %}" method = "post">
         {% csrf_token %}

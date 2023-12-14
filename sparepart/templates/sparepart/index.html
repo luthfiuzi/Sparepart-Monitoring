@@ -5,10 +5,10 @@
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-12">
-        <a href="{% url 'sparepart:sparepart_create' %}" class="btn btn-primary">Tambah Sparepart</a>
+        
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6>Data Sparepart</h6>
+          <h6>Critical Stok</h6>
         </div>
         <div class="card-body justify-content-between">
           <table id="table"  class="table table-striped ">
@@ -28,7 +28,7 @@
     $(document).ready(function() {
         AjaxDatatableViewUtils.initialize_table(
             $('#table'),
-            "{% url 'sparepart:sparepart_ajax' %}",
+            "{% url 'sparepart:critical_stok_ajax' %}",
             {
                 // extra_options (example)
                 processing: false,
@@ -44,35 +44,4 @@
 
 </script>
 
-  {% endblock extrascript %}
-
-<!-- <a href="{% url 'sparepart:sparepart_create' %}">Tambah Sparepart</a>
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nama Part</th>
-            <th>Merk</th>
-            <th>Jumlah</th>
-            <th>No. Rak</th>
-            <th>Keterangan</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        {% for sparepart in spareparts %}
-        <tr>
-            <td>{{ sparepart.id }}</td>
-            <td>{{ sparepart.nama }}</td>
-            <td>{{ sparepart.merk }}</td>
-            <td>{{ sparepart.jumlah }}</td>
-            <td>{{ sparepart.rak }}</td>
-            <td>{{ sparepart.keterangan }}</td>
-            <td>
-                <a href="{% url 'sparepart:sparepart_update' sparepart.id %}">Edit</a>
-                <a href="{% url 'sparepart:sparepart_delete' sparepart.id %}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table> -->
+{% endblock extrascript %}

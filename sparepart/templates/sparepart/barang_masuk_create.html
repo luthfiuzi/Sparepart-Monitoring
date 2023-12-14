@@ -1,0 +1,7 @@
+{% load crispy_forms_tags %}
+
+<form action = "{% url 'sparepart:barang_masuk_create' %}" method = "post">
+    {% csrf_token %}
+        {% crispy form %}
+    <input type = "submit" value = "Tambah" class="btn btn-primary">
+</form>
