@@ -29,4 +29,8 @@ urlpatterns = [
     path("barang_masuk/", views.BarangMasukView.as_view(), name="barang_masuk"),
     path("barang_masuk/ajax/", views.BarangMasukAjaxView.as_view(), name="barang_masuk_ajax"),
     path("barang_masuk/create/", views.BarangMasukCreateView.as_view(), name="barang_masuk_create"),
+    
+    path("barang_keluar/", views.BarangMasukView.as_view(), name="barang_keluar"),
+    path("barang_keluar/ajax/", views.BarangMasukAjaxView.as_view(), name="barang_keluar_ajax"),
+    path("barang_keluar/create/", views.BarangMasukCreateView.as_view(), name="barang_keluar_create"),
 ]

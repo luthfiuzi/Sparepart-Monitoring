@@ -1,5 +1,5 @@
 from django.contrib import admin
-from sparepart.models import Merk, SparePart, Karyawan, HistoryBarangMasuk
+from sparepart.models import Merk, SparePart, Karyawan, HistoryBarangMasuk, HistoryBarangKeluar
 
 admin.site.register(Merk)
 admin.site.register(SparePart)
@@ -18,5 +18,11 @@ class HistoryBarangMasukAdmin(admin.ModelAdmin):
     list_filter = ('tanggal', 'sparepart', 'karyawan')
 
 admin.site.register(HistoryBarangMasuk, HistoryBarangMasukAdmin)
+
+class HistoryBarangKeluarAdmin(admin.ModelAdmin):
+    list_display = ('tanggal', 'sparepart', 'karyawan')
+    list_filter = ('tanggal', 'sparepart', 'karyawan')
+
+admin.site.register(HistoryBarangKeluar, HistoryBarangKeluarAdmin)
 
 # Register your models here.

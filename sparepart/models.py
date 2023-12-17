@@ -33,3 +33,10 @@ class HistoryBarangMasuk(models.Model):
     karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
     jumlah = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+class HistoryBarangKeluar(models.Model):
+    tanggal = models.DateField(default=timezone.now)
+    sparepart = models.ForeignKey(SparePart, on_delete=models.PROTECT)
+    karyawan = models.ForeignKey(Karyawan, on_delete=models.PROTECT)
+    jumlah = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)

@@ -1,10 +1,10 @@
 from typing import Any
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
-from sparepart.models import Merk, SparePart, Karyawan, HistoryBarangMasuk
+from sparepart.models import Merk, SparePart, Karyawan, HistoryBarangMasuk, HistoryBarangKeluar
 from ajax_datatable.views import AjaxDatatableView
 from django.utils.html import format_html
-from sparepart.forms import BarangMasukForm
+from sparepart.forms import BarangMasukForm, BarangKeluarForm
 class IndexView(TemplateView):
     template_name = "sparepart/index.html"
 
@@ -185,7 +185,32 @@ class BarangMasukAjaxView(AjaxDatatableView):
     title = "Barang Masuk"
     max_display_length = 50
     search_values_separator = " "
-    length_menu = [[10, 25, 50, -1], [10, 25, 50, "All"]]
+    length_menu = [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+
+    def get_column_defs(self, request):
+        column_defs = [
+        {'name': 'tanggal', 'visible': True, },
+        {'name': 'sparepart', 'visible': True, 'foreign_field': 'sparepart__nama',},
+        {'name': 'jumlah', 'visible': True,},
+        {"name": "Total", "visible": True, "foreign_field": "sparepart__jumlah"},
+        {'name': 'karyawan', 'visible': True, 'foreign_field': 'karyawan__nama',},
+        {"name": "created_at", "visible": True, "title": "created_at"}
+    ]
+        return column_defs
+
+    def customize_row(self, row, obj):
+        row['created_at'] = obj.created_at.strftime("%H:%M:%S")
+
+class BarangKeluarView(TemplateView):
+    template_name = "sparepart/barang_keluar.html"
+
+class BarangKeluarAjaxView(AjaxDatatableView):
+    model = HistoryBarangKeluar
+    initial_order = [["created_at", "desc"], ]
+    title = "Barang Keluar"
+    max_display_length = 50
+    search_values_separator = " "
+    length_menu = [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
 
     def get_column_defs(self, request):
         column_defs = [
@@ -257,3 +282,9 @@ class BarangMasukCreateView(CreateView):
     model = HistoryBarangMasuk
     success_url = "/barang_masuk/"
     form_class = BarangMasukForm
+
+class BarangKeluarCreateView(CreateView):
+    template_name = "sparepart/barang_keluar_create.html"
+    model = HistoryBarangKeluar
+    success_url = "/barang_keluar/"
+    form_class = BarangKeluarForm
